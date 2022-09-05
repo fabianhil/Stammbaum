@@ -10,41 +10,41 @@ int const DB_SIZE = 50;
 
 struct vorfahren
 {
-	char nachname[20];
-	char vorname[20];
+    char nachname[20];
+    char vorname[20];
 };
 
 struct datum
 {
-	int jahr;
-	int monat;
-	int tag;
+    int jahr;
+    int monat;
+    int tag;
 };
 
 struct kinder
 {
-	char nachname[20];
-	char vorname[20];
+    char nachname[20];
+    char vorname[20];
 };
 
 struct partner
 {
-	char nachname[20];
-	char vorname[20];
+    char nachname[20];
+    char vorname[20];
 };
 
 struct person
 {
     int  generation;
     struct vorfahren vorfahre;
-	char nachname[20];
+    char nachname[20];
     char vorname[20];
     struct datum geb_datum;
-	struct partner ehe_partner;
-	struct kinder kind1;
-	struct kinder kind2;
-	struct kinder kind3;
-	struct kinder kind4;
+    struct partner ehe_partner;
+    struct kinder kind1;
+    struct kinder kind2;
+    struct kinder kind3;
+    struct kinder kind4;
 };
 typedef struct person person_t;
 
@@ -65,58 +65,58 @@ void readcsv(char const* const datei)
                  &stammbaum[zaehler].generation,
                  stammbaum[zaehler].vorfahre.nachname,
                  stammbaum[zaehler].vorfahre.vorname,
-				 stammbaum[zaehler].nachname,
+                 stammbaum[zaehler].nachname,
                  stammbaum[zaehler].vorname,
                  &stammbaum[zaehler].geb_datum.jahr,
-				 &stammbaum[zaehler].geb_datum.monat,
-				 &stammbaum[zaehler].geb_datum.tag,
-				 stammbaum[zaehler].ehe_partner.nachname,
+                 &stammbaum[zaehler].geb_datum.monat,
+                 &stammbaum[zaehler].geb_datum.tag,
+                 stammbaum[zaehler].ehe_partner.nachname,
                  stammbaum[zaehler].ehe_partner.vorname,
-				 stammbaum[zaehler].kind1.nachname,
+                 stammbaum[zaehler].kind1.nachname,
                  stammbaum[zaehler].kind1.vorname,
-				 stammbaum[zaehler].kind2.nachname,
+                 stammbaum[zaehler].kind2.nachname,
                  stammbaum[zaehler].kind2.vorname,
-				 stammbaum[zaehler].kind3.nachname,
+                 stammbaum[zaehler].kind3.nachname,
                  stammbaum[zaehler].kind3.vorname,
-				 stammbaum[zaehler].kind4.nachname,
+                 stammbaum[zaehler].kind4.nachname,
                  stammbaum[zaehler].kind4.vorname)
-          != EOF)
+            != EOF)
     {
         printf("\nGeneration: %d \n Vorfahre: %s, %s \n Name: %s, %s \n Geburtsdatum: %d.%d.%d \n Partner: %s, %s \n",
-				stammbaum[zaehler].generation,
-                stammbaum[zaehler].vorfahre.nachname,
-                stammbaum[zaehler].vorfahre.vorname,
-				stammbaum[zaehler].nachname,
-                stammbaum[zaehler].vorname,
-                stammbaum[zaehler].geb_datum.tag,
-				stammbaum[zaehler].geb_datum.monat,
-				stammbaum[zaehler].geb_datum.jahr,
-				stammbaum[zaehler].ehe_partner.nachname,
-                stammbaum[zaehler].ehe_partner.vorname);
-			if(stammbaum[zaehler].kind1.vorname[1]!= '%')
-			{
-				printf(" Kind 1: %s, %s \n",
-				stammbaum[zaehler].kind1.nachname,
-				stammbaum[zaehler].kind1.vorname);
-			}
-			if(stammbaum[zaehler].kind2.vorname[1]!= '%')
-			{
-				printf(" Kind 2: %s, %s \n",
-				stammbaum[zaehler].kind2.nachname,
-				stammbaum[zaehler].kind2.vorname);
-			}
-			if(stammbaum[zaehler].kind3.vorname[1]!= '%')
-			{
-				printf(" Kind 3: %s, %s \n",
-				stammbaum[zaehler].kind3.nachname,
-				stammbaum[zaehler].kind3.vorname);
-			}
-			if(stammbaum[zaehler].kind4.vorname[0]!= '%')
-			{
-				printf(" Kind 4: %s, %s \n",
-				stammbaum[zaehler].kind4.nachname,
-				stammbaum[zaehler].kind4.vorname);
-			}
+               stammbaum[zaehler].generation,
+               stammbaum[zaehler].vorfahre.nachname,
+               stammbaum[zaehler].vorfahre.vorname,
+               stammbaum[zaehler].nachname,
+               stammbaum[zaehler].vorname,
+               stammbaum[zaehler].geb_datum.tag,
+               stammbaum[zaehler].geb_datum.monat,
+               stammbaum[zaehler].geb_datum.jahr,
+               stammbaum[zaehler].ehe_partner.nachname,
+               stammbaum[zaehler].ehe_partner.vorname);
+        if(stammbaum[zaehler].kind1.vorname[1]!= '%')
+        {
+            printf(" Kind 1: %s, %s \n",
+                   stammbaum[zaehler].kind1.nachname,
+                   stammbaum[zaehler].kind1.vorname);
+        }
+        if(stammbaum[zaehler].kind2.vorname[1]!= '%')
+        {
+            printf(" Kind 2: %s, %s \n",
+                   stammbaum[zaehler].kind2.nachname,
+                   stammbaum[zaehler].kind2.vorname);
+        }
+        if(stammbaum[zaehler].kind3.vorname[1]!= '%')
+        {
+            printf(" Kind 3: %s, %s \n",
+                   stammbaum[zaehler].kind3.nachname,
+                   stammbaum[zaehler].kind3.vorname);
+        }
+        if(stammbaum[zaehler].kind4.vorname[0]!= '%')
+        {
+            printf(" Kind 4: %s, %s \n",
+                   stammbaum[zaehler].kind4.nachname,
+                   stammbaum[zaehler].kind4.vorname);
+        }
         zaehler++;
         if(zaehler == DB_SIZE)
         {
