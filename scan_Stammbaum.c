@@ -28,7 +28,7 @@ struct person
     char nachname[20];
     char vorname[20];
     struct datum geb_datum;
-	struct datum tod_datum;
+    struct datum tod_datum;
     struct name ehe_partner;
     struct name kind1;
     struct name kind2;
@@ -59,7 +59,7 @@ void readcsv(char const* const datei)
                  &stammbaum[zaehler].geb_datum.jahr,
                  &stammbaum[zaehler].geb_datum.monat,
                  &stammbaum[zaehler].geb_datum.tag,
-				 &stammbaum[zaehler].tod_datum.jahr,
+                 &stammbaum[zaehler].tod_datum.jahr,
                  &stammbaum[zaehler].tod_datum.monat,
                  &stammbaum[zaehler].tod_datum.tag,
                  stammbaum[zaehler].ehe_partner.nachname,
@@ -83,14 +83,14 @@ void readcsv(char const* const datei)
                stammbaum[zaehler].geb_datum.tag,
                stammbaum[zaehler].geb_datum.monat,
                stammbaum[zaehler].geb_datum.jahr);
-		if(stammbaum[zaehler].tod_datum.jahr!= 0)
+        if(stammbaum[zaehler].tod_datum.jahr!= 0)
         {
             printf(" Todestag: %d.%d.%d \n",
-               stammbaum[zaehler].tod_datum.tag,
-               stammbaum[zaehler].tod_datum.monat,
-               stammbaum[zaehler].tod_datum.jahr);
+                   stammbaum[zaehler].tod_datum.tag,
+                   stammbaum[zaehler].tod_datum.monat,
+                   stammbaum[zaehler].tod_datum.jahr);
         }
-			printf(" Ehepartner: %s, %s \n",			    
+        printf(" Ehepartner: %s, %s \n",
                stammbaum[zaehler].ehe_partner.nachname,
                stammbaum[zaehler].ehe_partner.vorname);
         if(stammbaum[zaehler].kind1.vorname[1]!= '%')
