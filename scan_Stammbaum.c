@@ -8,7 +8,7 @@ char const* const VERSIONSNR = "0.1.2";
 
 int const DB_SIZE = 50;
 
-struct vorfahren
+struct name
 {
     char nachname[20];
     char vorname[20];
@@ -21,30 +21,19 @@ struct datum
     int tag;
 };
 
-struct kinder
-{
-    char nachname[20];
-    char vorname[20];
-};
-
-struct partner
-{
-    char nachname[20];
-    char vorname[20];
-};
-
 struct person
 {
     int  generation;
-    struct vorfahren vorfahre;
+    struct name vorfahre;
     char nachname[20];
     char vorname[20];
     struct datum geb_datum;
-    struct partner ehe_partner;
-    struct kinder kind1;
-    struct kinder kind2;
-    struct kinder kind3;
-    struct kinder kind4;
+	struct datum tod_datum;
+    struct name ehe_partner;
+    struct name kind1;
+    struct name kind2;
+    struct name kind3;
+    struct name kind4;
 };
 typedef struct person person_t;
 
@@ -61,7 +50,7 @@ void readcsv(char const* const datei)
     }
     person_t stammbaum[DB_SIZE];
     while(fscanf(filepointer,
-                 "%d,%[^,],%[^,],%[^,],%[^,],%d,%d,%d,%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%s",
+                 "%d,%[^,],%[^,],%[^,],%[^,],%d,%d,%d,%d,%d,%d,%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%s",
                  &stammbaum[zaehler].generation,
                  stammbaum[zaehler].vorfahre.nachname,
                  stammbaum[zaehler].vorfahre.vorname,
@@ -70,6 +59,9 @@ void readcsv(char const* const datei)
                  &stammbaum[zaehler].geb_datum.jahr,
                  &stammbaum[zaehler].geb_datum.monat,
                  &stammbaum[zaehler].geb_datum.tag,
+				 &stammbaum[zaehler].tod_datum.jahr,
+                 &stammbaum[zaehler].tod_datum.monat,
+                 &stammbaum[zaehler].tod_datum.tag,
                  stammbaum[zaehler].ehe_partner.nachname,
                  stammbaum[zaehler].ehe_partner.vorname,
                  stammbaum[zaehler].kind1.nachname,
@@ -82,7 +74,7 @@ void readcsv(char const* const datei)
                  stammbaum[zaehler].kind4.vorname)
             != EOF)
     {
-        printf("\nGeneration: %d \n Vorfahre: %s, %s \n Name: %s, %s \n Geburtsdatum: %d.%d.%d \n Partner: %s, %s \n",
+        printf("\nGeneration: %d \n Vorfahre: %s, %s \n Name: %s, %s \n Geburtsdatum: %d.%d.%d \n",
                stammbaum[zaehler].generation,
                stammbaum[zaehler].vorfahre.nachname,
                stammbaum[zaehler].vorfahre.vorname,
@@ -90,7 +82,15 @@ void readcsv(char const* const datei)
                stammbaum[zaehler].vorname,
                stammbaum[zaehler].geb_datum.tag,
                stammbaum[zaehler].geb_datum.monat,
-               stammbaum[zaehler].geb_datum.jahr,
+               stammbaum[zaehler].geb_datum.jahr);
+		if(stammbaum[zaehler].tod_datum.jahr!= 0)
+        {
+            printf(" Todestag: %d.%d.%d \n",
+               stammbaum[zaehler].tod_datum.tag,
+               stammbaum[zaehler].tod_datum.monat,
+               stammbaum[zaehler].tod_datum.jahr);
+        }
+			printf(" Ehepartner: %s, %s \n",			    
                stammbaum[zaehler].ehe_partner.nachname,
                stammbaum[zaehler].ehe_partner.vorname);
         if(stammbaum[zaehler].kind1.vorname[1]!= '%')
